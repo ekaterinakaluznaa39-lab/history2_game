@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Економіка й населення. Друга половина ХІХ ст.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F9FA; --card:#FFFFFF; --ink:#0B1020; --text:#5E6A7D; --muted:#8A94A6; --border:#EDEFF3;
+  --primary:#F25944; --on-primary:#FFFFFF; --soft:rgba(242,89,68,.10);
+  --ok:#109338; --ok-soft:#E3F7EA; --bad:#B3122E; --bad-soft:#FBE3E7; --gold:#FD8D00;
+  --g1:#E39B00; --g2:#0E9488; --g3:#7B61FF;
+  --shadow:0 2px 4px rgba(11,16,32,.04);
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1020; --card:#151B33; --ink:#EEF0F8; --text:#B4BCD0; --muted:#7F89A3; --border:#252D4D;
+    --primary:#FF6F5B; --on-primary:#0B1020; --soft:rgba(255,111,91,.16);
+    --ok:#3FD27A; --ok-soft:#0F3322; --bad:#FF5C7A; --bad-soft:#3D1A24; --gold:#FFAA3B;
+    --g1:#FFB938; --g2:#2DD4BF; --g3:#A594FF;
+    --shadow:none; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1020; --card:#151B33; --ink:#EEF0F8; --text:#B4BCD0; --muted:#7F89A3; --border:#252D4D;
+  --primary:#FF6F5B; --on-primary:#0B1020; --soft:rgba(255,111,91,.16);
+  --ok:#3FD27A; --ok-soft:#0F3322; --bad:#FF5C7A; --bad-soft:#3D1A24; --gold:#FFAA3B;
+  --g1:#FFB938; --g2:#2DD4BF; --g3:#A594FF;
+  --shadow:none; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+  font-family:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 40px;transition:max-width .2s}
+.wrap.wide{max-width:1120px}
+@media (min-width:1024px){.wrap{padding:28px 24px 48px}}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+button:disabled{cursor:default}
+.hidden{display:none!important}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;min-height:44px}
+.back{background:none;border:none;color:var(--text);font-weight:600;padding:10px 0}
+.pts{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:100px;
+  padding:8px 14px;font-weight:800;font-variant-numeric:tabular-nums;box-shadow:var(--shadow);white-space:nowrap}
+.pts .s{color:var(--ok)}
+.brand{background:var(--primary);color:#FFFFFF;border-radius:100px;padding:9px 18px;font-weight:800;letter-spacing:.08em;font-size:.95rem;box-shadow:var(--shadow)}
+.pts small{color:var(--muted);font-weight:600}
+
+h1{font-size:2.3rem;line-height:1.05;margin:6px 0 8px;font-weight:800;letter-spacing:-.02em}
+.lead{color:var(--text);margin:0 0 20px;line-height:1.5;font-weight:500}
+.lead.b{font-weight:700;margin-bottom:4px}
+
+.goal{background:var(--primary);color:var(--on-primary);border-radius:24px;padding:20px;margin-bottom:16px}
+.goal .row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.goal .num{font-size:2.4rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.goal .num small{font-size:1rem;opacity:.75;font-weight:700}
+.goal p{margin:12px 0 0;line-height:1.45;font-weight:500;opacity:.92;font-size:.95rem}
+.track{height:10px;border-radius:100px;background:rgba(255,255,255,.28);overflow:hidden;margin-top:14px}
+.track div{height:100%;border-radius:100px;background:currentColor;transition:width .4s;width:0}
+
+.mode{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--border);border-radius:24px;
+  padding:20px;margin-bottom:12px;box-shadow:var(--shadow);transition:border-color .15s}
+.mode:hover{border-color:var(--primary)}
+.mode .sample{font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.mode .sample .q{background:var(--soft);border-radius:100px;padding:3px 12px}
+.mode h2{margin:0 0 4px;font-size:1.2rem;font-weight:800}
+.mode p{margin:0;color:var(--text);font-size:.92rem;line-height:1.45;font-weight:500}
+
+.panel{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:20px;box-shadow:var(--shadow);line-height:1.5}
+.btn{display:block;width:100%;border:none;border-radius:100px;padding:15px;font-weight:800;font-size:1.05rem;margin-top:14px;
+  background:var(--primary);color:var(--on-primary)}
+.btn.ghost{background:var(--soft);color:var(--primary)}
+.btn:disabled{opacity:.4}
+.acts{display:flex;gap:10px}
+.acts .btn{flex:1}
+.big{font-size:3.4rem;font-weight:800;color:var(--primary);line-height:1;margin:6px 0}
+.big small{font-size:1.4rem;color:var(--muted)}
+
+.clock{text-align:center;font-weight:800;font-variant-numeric:tabular-nums;color:var(--primary);font-size:1.25rem;margin-bottom:8px}
+.timer{height:8px;background:var(--soft);border-radius:100px;overflow:hidden;margin-bottom:16px}
+.timer div{height:100%;background:var(--primary);width:0;transition:width .3s;border-radius:100px}
+.stop{display:block;margin:18px auto 0;background:none;border:none;color:var(--text);font-weight:700;text-decoration:underline;padding:8px}
+.fb{min-height:1.6em;text-align:center;font-weight:700;margin:12px 0;line-height:1.4}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.note{color:var(--text);font-size:.88rem;line-height:1.45;margin:2px 4px 12px;font-weight:500}
+.dot{width:12px;height:12px;border-radius:50%;flex:none;display:inline-block}
+.d1{background:var(--g1)} .d2{background:var(--g2)} .d3{background:var(--g3)}
+
+/* One by one */
+.task{background:var(--card);border:2px solid var(--border);border-radius:24px;padding:30px 18px;text-align:center;
+  font-size:1.35rem;font-weight:700;line-height:1.35;min-height:160px;display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);position:relative;touch-action:none;user-select:none;cursor:grab}
+.task .n{position:absolute;top:12px;left:16px;font-size:.8rem;color:var(--muted);font-weight:700}
+.task.enter{animation:enter .25s ease-out}
+.task.ok{border-color:var(--ok);background:var(--ok-soft)}
+.task.bad{border-color:var(--bad);background:var(--bad-soft);animation:shake .35s}
+.task.drag{cursor:grabbing;box-shadow:0 18px 36px -12px rgba(11,16,32,.35);z-index:5;transition:none}
+@keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.bins{display:grid;gap:10px}
+.bin{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:2px solid var(--border);
+  border-radius:18px;padding:16px 18px;font-weight:700;font-size:1.05rem;box-shadow:var(--shadow);transition:border-color .15s,background .15s}
+.bin .k{margin-left:auto;color:var(--muted);font-size:.8rem;font-weight:700;border:1px solid var(--border);border-radius:8px;padding:2px 8px}
+.bin:hover:not(:disabled),.bin.over{border-color:var(--primary);background:var(--soft)}
+.bin.right{border-color:var(--ok);background:var(--ok-soft)}
+@media (hover:none){.bin .k{display:none}}
+
+.mist{margin-top:14px;border-top:1px solid var(--border);padding-top:6px}
+.mist .it{padding:10px 0;border-bottom:1px solid var(--border);font-weight:600;line-height:1.4}
+.mist .it:last-child{border-bottom:none}
+.mist .ex{font-size:.88rem;color:var(--text);font-weight:500;margin-top:4px}
+.mist .w{color:var(--bad);text-decoration:line-through;font-weight:700}
+.mist .r{color:var(--ok);font-weight:800}
+
+/* Sort */
+.pool{border:2px dashed var(--border);border-radius:24px;padding:14px;margin-bottom:14px;min-height:80px;transition:border-color .15s,background .15s}
+.pool .hint{color:var(--muted);font-weight:600;font-size:.92rem;padding:6px;text-align:center;width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.group .nm-s{display:none}
+
+.group{background:var(--card);border:2px solid var(--border);border-radius:24px;padding:14px;min-height:150px;box-shadow:var(--shadow);
+  cursor:pointer;display:flex;flex-direction:column;transition:border-color .15s,background .15s}
+.group h2{display:flex;align-items:center;gap:8px;margin:2px 4px 12px;font-size:1.02rem;font-weight:800}
+.group h2 small{margin-left:auto;color:var(--muted);font-weight:700;font-variant-numeric:tabular-nums}
+.group .chips{flex-direction:column;flex:1}
+.group .sc{width:100%}
+@media (max-width:599px){
+  .groups{gap:6px}
+  .group{padding:8px 6px;border-radius:16px;min-height:120px}
+  .group h2{flex-direction:column;align-items:flex-start;gap:3px;margin:0 2px 8px;font-size:.74rem;line-height:1.15;overflow-wrap:anywhere}
+  .group h2 small{margin-left:0}
+  .group .nm-f{display:none}.group .nm-s{display:inline}
+  .group .chips{gap:5px}
+  .group .sc{font-size:.7rem;padding:6px 6px;border-radius:10px;line-height:1.3;overflow-wrap:anywhere;hyphens:auto}
+}
+.zone.target{border-style:dashed;border-color:var(--primary)}
+.zone.over{border-color:var(--primary);background:var(--soft)}
+.sc{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:10px 12px;font-weight:600;font-size:.92rem;line-height:1.35;
+  text-align:left;box-shadow:var(--shadow);cursor:grab;touch-action:none;user-select:none;position:relative;transition:border-color .15s,background .15s}
+@media (pointer:coarse){.sc{touch-action:auto}}
+@media (hover:hover){.sc:hover{border-color:var(--muted)}}
+.sc.sel{border-color:var(--primary);background:var(--soft)}
+.sc.drag{z-index:20;cursor:grabbing;box-shadow:0 14px 30px -10px rgba(11,16,32,.4);transition:none}
+.sc.ok{border-color:var(--ok);background:var(--ok-soft);cursor:default}
+.sc.ok::before{content:"✓ ";color:var(--ok);font-weight:800}
+.sc.bad{border-color:var(--bad);background:var(--bad-soft);animation:shake .35s}
+.sc.bad::before{content:"✗ ";color:var(--bad);font-weight:800}
+.sacts{max-width:420px;margin:0 auto}
+@media (min-width:760px){.pool .sc{font-size:.86rem;padding:7px 11px;border-radius:12px}.pool .chips{gap:7px}.pool{padding:12px}}
+
+.quick{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:1px solid var(--border);
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));display:none;gap:8px;grid-template-columns:repeat(3,1fr);
+  box-shadow:0 -6px 20px rgba(11,16,32,.08)}
+.quick.show{display:grid}
+.quick button{border:2px solid var(--border);background:var(--card);border-radius:14px;padding:10px 4px;font-weight:700;font-size:.82rem;
+  display:flex;flex-direction:column;align-items:center;gap:6px;line-height:1.2}
+.quick button:active{background:var(--soft);border-color:var(--primary)}
+.quick .ttl{grid-column:1/-1;text-align:center;font-size:.8rem;color:var(--muted);font-weight:700}
+@media (min-width:760px){.quick{display:none!important}}
+body.has-quick .wrap{padding-bottom:150px}
+
+/* Answers */
+.ans{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:760px){.ans{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ans h2{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:1.05rem;font-weight:800}
+.ans ul{margin:0;padding-left:18px;color:var(--text);font-weight:500;font-size:.93rem;line-height:1.45;display:flex;flex-direction:column;gap:6px}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:26px 22px 28px;color:#fff;
+  background:radial-gradient(120% 100% at 0% 0%,#FF8A72 0%,#F25944 42%,#D93F2B 100%);
+  display:grid;gap:26px;box-shadow:0 24px 50px -26px rgba(217,63,43,.7)}
+@media (min-width:860px){.hero{grid-template-columns:1.1fr 1fr;padding:48px;align-items:center;min-height:520px}}
+@media (min-width:1280px){.hero{padding:56px 64px}}
+.logo{font-weight:800;font-size:1.3rem;letter-spacing:-.03em;margin-bottom:22px}
+.hero h1{color:#fff;font-size:clamp(2.4rem,6vw,4rem);margin:0 0 16px}
+.tag{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.85);border-radius:100px;padding:4px 14px 4px 4px;font-weight:600;font-size:.88rem;margin-bottom:16px}
+.tag b{background:#fff;color:#D93F2B;border-radius:100px;min-width:30px;height:28px;display:inline-flex;align-items:center;justify-content:center;padding:0 8px;font-weight:800}
+.hero .desc{font-weight:500;line-height:1.5;max-width:44ch;margin:0 0 24px}
+.start-btn{display:block;width:100%;max-width:340px;border:none;border-radius:100px;background:#fff;color:#D93F2B;font-weight:800;font-size:1.1rem;padding:17px;box-shadow:0 12px 24px -12px rgba(0,0,0,.4);transition:transform .12s}
+.start-btn:hover{transform:translateY(-1px)}
+.start-btn:focus-visible,.linkbtn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.linkbtn{display:inline-block;background:none;border:none;color:#fff;text-decoration:underline;font-weight:600;font-size:.88rem;padding:12px 0 4px}
+.rec{font-size:.88rem;font-weight:700;margin-top:6px}
+.rec:empty{display:none}
+.art svg{width:100%;height:auto;display:block;max-width:460px;margin:0 auto}
+.rules{list-style:none;margin:18px 0 0;padding:16px;border-radius:18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);
+  display:flex;flex-direction:column;gap:10px;font-size:.9rem;font-weight:500;line-height:1.4}
+.rules li{display:flex;gap:10px;align-items:flex-start}
+.rules li span{flex:none;width:22px;height:22px;border-radius:50%;background:#fff;color:#D93F2B;font-weight:800;font-size:.75rem;display:flex;align-items:center;justify-content:center}
+@media (max-width:859px){.hero-side{order:2}}
+#sReview{margin-top:32px;padding-top:8px}
+.rv-h{font-size:1.6rem;font-weight:800;margin:0 4px 6px;letter-spacing:-.01em}
+.ans li.miss{color:var(--bad);font-weight:700}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:380px){h1{font-size:2rem}.task{font-size:1.15rem}.bin{font-size:.98rem;padding:14px}}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="wrap wide" id="wrap">
+
+<section id="home">
+  <div class="hero">
+    <div class="hero-main">
+      <div class="logo">znohub.</div>
+      <h1>Економіка й населення</h1>
+      <div class="tag"><b>26</b>тверджень</div>
+      <p class="desc">Як думаєш, для яких земель було характерне переселення в глиб імперії? А де краще була розвинена солевидобувна промисловість? Пригадай, що знаєш, розклади твердження по групах і перевір себе.</p>
+      <button class="start-btn" data-go="sort">Почати гру</button>
+      <div class="rec" id="gRec"></div>
+    </div>
+    <div class="hero-side">
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 420 250" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 9" opacity=".95">
+            <path d="M118 74 C 112 110, 82 120, 80 150"/>
+            <path d="M300 62 C 330 95, 345 118, 340 150"/>
+            <path d="M212 112 C 214 125, 212 138, 210 150"/>
+          </g>
+          <g transform="rotate(-7 118 52)"><rect x="52" y="34" width="132" height="38" rx="11" fill="#fff"/><rect x="66" y="47" width="78" height="5" rx="2.5" fill="#F25944" opacity=".55"/><rect x="66" y="57" width="52" height="5" rx="2.5" fill="#F25944" opacity=".3"/></g>
+          <g transform="rotate(8 300 40)"><rect x="236" y="22" width="128" height="38" rx="11" fill="#fff"/><rect x="250" y="35" width="70" height="5" rx="2.5" fill="#F25944" opacity=".55"/><rect x="250" y="45" width="88" height="5" rx="2.5" fill="#F25944" opacity=".3"/></g>
+          <g><rect x="160" y="78" width="104" height="34" rx="11" fill="#fff" opacity=".9"/><text x="212" y="101" text-anchor="middle" font-family="Montserrat,Segoe UI,sans-serif" font-weight="800" font-size="16" fill="#F25944">?</text></g>
+          <g font-family="Montserrat,Segoe UI,sans-serif" font-weight="700" font-size="10.5" fill="#fff">
+            <rect x="14" y="156" width="128" height="80" rx="16" fill="#fff" fill-opacity=".16" stroke="#fff" stroke-opacity=".55" stroke-width="1.5"/>
+            <circle cx="27" cy="176" r="4.5" fill="#FFC94A"/><text x="35" y="180">Наддніпрянщина</text>
+            <rect x="26" y="192" width="104" height="10" rx="5" fill="#fff" opacity=".45"/><rect x="26" y="208" width="80" height="10" rx="5" fill="#fff" opacity=".3"/>
+            <rect x="146" y="156" width="128" height="80" rx="16" fill="#fff" fill-opacity=".16" stroke="#fff" stroke-opacity=".55" stroke-width="1.5"/>
+            <circle cx="160" cy="176" r="4.5" fill="#5EEAD4"/><text x="168" y="180" font-size="9.5">Західноукраїнські</text>
+            <rect x="158" y="192" width="104" height="10" rx="5" fill="#fff" opacity=".45"/><rect x="158" y="208" width="70" height="10" rx="5" fill="#fff" opacity=".3"/>
+            <rect x="278" y="156" width="128" height="80" rx="16" fill="#fff" fill-opacity=".16" stroke="#fff" stroke-opacity=".55" stroke-width="1.5"/>
+            <circle cx="294" cy="176" r="5" fill="#C4B5FD"/><text x="304" y="180">Спільне</text>
+            <rect x="290" y="192" width="104" height="10" rx="5" fill="#fff" opacity=".45"/><rect x="290" y="208" width="86" height="10" rx="5" fill="#fff" opacity=".3"/>
+          </g>
+        </svg>
+      </div>
+      <ol class="rules">
+        <li><span>1</span>Розклади 26 тверджень по трьох групах.</li>
+        <li><span>2</span>Перетягни картку в групу або торкнися картки, а потім групи.</li>
+        <li><span>3</span>Коли все розкладено, тисни «Перевірити».</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="one" class="hidden">
+  <div class="top"><button class="back" data-go="home">← Назад</button><span class="pts"><span class="s">✓</span><span id="oScore">0</span><small>/ <span id="oTotal">26</span></small></span></div>
+  <div id="oGame">
+    <div class="clock" id="oClock">⏱ 0:00</div>
+    <div class="timer"><div id="oBar"></div></div>
+    <div id="oStage"></div>
+    <div class="fb" id="oFb" aria-live="polite"></div>
+    <div class="bins" id="oBins"></div>
+    <button class="stop" id="oStop">Завершити й подивитися результат</button>
+  </div>
+  <div id="oEnd" class="panel hidden">
+    <div style="font-weight:700;color:var(--text)">Правильних відповідей</div>
+    <div class="big" id="oBig">0</div>
+    <div id="oMeta" style="font-weight:700"></div>
+    <div class="mist" id="oMist"></div>
+    <div class="acts"><button class="btn ghost" id="oRetry">Повторити помилки</button><button class="btn" id="oAgain">Ще раз</button></div>
+  </div>
+</section>
+
+<section id="sort" class="hidden">
+  <div class="top"><button class="back" data-go="home">← Назад</button><span class="pts"><span id="sPlaced">0</span><small>/ 26 розкладено</small></span></div>
+  <div class="clock" id="sClock">⏱ 0:00</div>
+  <div class="timer"><div id="sBar"></div></div>
+  <p class="note">Перетягни картку в групу або торкнися картки, а потім групи.</p>
+  <div class="groups" id="groups"></div>
+  <div class="pool zone" data-zone="" id="pool"><div class="chips" id="poolCards"></div></div>
+  <div class="fb" id="sFb" aria-live="polite"></div>
+  <div class="sacts" id="sActs"><button class="btn" id="sCheck">Перевірити</button></div>
+  <div class="sacts acts hidden" id="sEndActs"><button class="btn ghost" data-go="home">На головну</button><button class="btn" id="sAgain">Ще раз</button></div>
+  <div id="sReview" class="hidden"></div>
+</section>
+
+<section id="answers" class="hidden">
+  <div class="top"><button class="back" data-go="home">← Назад</button><span></span></div>
+  <h1 style="font-size:1.9rem">Правильні відповіді</h1>
+  <p class="lead">Усі 26 тверджень, розкладені по групах.</p>
+  <div class="ans" id="ansList"></div>
+  <div class="sacts"><button class="btn" data-go="sort">Грати</button></div>
+</section>
+
+</div>
+<div class="quick" id="quick"></div>
+
+<script>
+const GROUPS = [
+  {id:"dnipro", name:"Наддніпрянщина", short:"Наддніпрян\u00ADщина", dot:"d1", items:[
+    "Розвиток машинобудівної, видобувної, металообробної галузей",
+    "Розвиток вугільної, металургійної галузей",
+    "Розвиток цукрової промисловості",
+    "Висока концентрація виробництва і утворення монополій",
+    "Утворення промислових районів (Донецький, Криворізький, Нікопольський та ін.)",
+    "1865 р. залізниця: Балта — Одеса",
+    "Стрімкий розвиток торгівлі, перевезення пшениці, цукру до найбільших портів",
+    "1861 р. скасовано кріпацтво",
+    "Міграції в глиб імперії, на схід",
+    "Тимчасово зобов’язаний"
+  ]},
+  {id:"zahid", name:"Західноукраїнські землі", short:"Західно\u00ADукраїнські", dot:"d2", items:[
+    "Збільшилася кількість промислових підприємств, але 95% з них були дрібними",
+    "Промисловий переворот відбувався повільно",
+    "Основними галузями були лісопильна і нафтова",
+    "Несприятлива політика австрійського уряду",
+    "Низька концентрація виробництва",
+    "1861 р. залізниця: Перемишль — Львів",
+    "Занепадають традиційні галузі",
+    "Конкуренція з боку західних регіонів імперії",
+    "Міграції за кордон",
+    "Основними галузями були озокеритова і солева",
+    "Стрімкий розвиток кооперативів"
+  ]},
+  {id:"spilne", name:"Спільне", short:"Спільне", dot:"d3", items:[
+    "Завершення промислового перевороту",
+    "Території розглядаються як джерело сировини і ринок збуту товарів",
+    "Поміщицьке землеволодіння",
+    "Селянське малоземелля",
+    "Іноземний капітал у добувній промисловості"
+  ]}
+];
+const ALL=[]; GROUPS.forEach(g=>g.items.forEach(t=>ALL.push({text:t,answer:g.id})));
+const G=Object.fromEntries(GROUPS.map(g=>[g.id,g]));
+const $=id=>document.getElementById(id);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const fmt=ms=>{const s=Math.floor(ms/1000);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+let timers=[];
+function stopTimers(){timers.forEach(clearInterval);timers=[]}
+function runClock(el,t0){el.textContent="⏱ 0:00";timers.push(setInterval(()=>el.textContent="⏱ "+fmt(Date.now()-t0),500))}
+
+/* ---- records ---- */
+const KEY="ekon19-records";
+function getRec(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}}
+function setRec(r){try{localStorage.setItem(KEY,JSON.stringify(r))}catch(e){}}
+function renderRec(){
+  const r=getRec();
+  $("gRec").textContent=r.sort!=null?`⏱ Твій найкращий час: ${fmt(r.sort)}`:"";
+}
+
+/* ---- navigation ---- */
+function go(id){
+  stopTimers(); hideQuick();
+  ["home","one","sort","answers"].forEach(s=>$(s).classList.toggle("hidden",s!==id));
+  $("wrap").classList.toggle("wide",id==="home"||id==="sort"||id==="answers");
+  window.scrollTo(0,0);
+  if(id==="home") renderRec();
+  if(id==="one") startOne(ALL);
+  if(id==="sort") startSort();
+  if(id==="answers") renderAnswers();
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b) go(b.dataset.go)});
+
+/* ---- generic drag (with auto-scroll near screen edges) ---- */
+function makeDraggable(el,{canStart,zoneSel,onDrop,onTap,dragClass}){
+  let sx=0,sy=0,down=false,moved=false,over=null,y0=0,lx=0,ly=0,raf=0;
+  const place=()=>{
+    const dx=lx-sx,dy=ly-sy+(window.scrollY-y0);
+    el.style.transform=`translate(${dx}px,${dy}px) rotate(${(lx-sx)/40}deg)`;
+    el.style.pointerEvents="none";
+    const t=document.elementFromPoint(lx,ly);
+    el.style.pointerEvents="";
+    const z=t&&t.closest(zoneSel);
+    if(z!==over){over&&over.classList.remove("over");over=z;z&&z.classList.add("over")}
+  };
+  const loop=()=>{
+    if(!down||!moved){raf=0;return}
+    const edge=70,h=window.innerHeight;
+    let v=0;
+    if(ly>h-edge) v=Math.ceil((ly-(h-edge))/5);
+    else if(ly<edge) v=-Math.ceil((edge-ly)/5);
+    if(v){window.scrollBy(0,v);place()}
+    raf=requestAnimationFrame(loop);
+  };
+  el.addEventListener("pointerdown",e=>{
+    if(!canStart()) return;
+    sx=lx=e.clientX;sy=ly=e.clientY;y0=window.scrollY;down=true;moved=false;
+    if(e.pointerType!=="touch"||getComputedStyle(el).touchAction==="none") el.setPointerCapture(e.pointerId);
+  });
+  el.addEventListener("pointermove",e=>{
+    if(!down) return;
+    lx=e.clientX;ly=e.clientY;
+    if(!moved&&Math.hypot(lx-sx,ly-sy)<6) return;
+    if(!moved){moved=true;el.classList.add(dragClass)}
+    place();
+    if(!raf) raf=requestAnimationFrame(loop);
+  });
+  const finish=(drop)=>{
+    if(!down) return; down=false;
+    el.classList.remove(dragClass); el.style.transform="";
+    if(drop&&moved&&over){const z=over;over.classList.remove("over");over=null;onDrop(z)}
+    else if(drop&&!moved) onTap&&onTap();
+    if(over){over.classList.remove("over");over=null}
+  };
+  el.addEventListener("pointerup",()=>finish(true));
+  el.addEventListener("pointercancel",()=>finish(false));
+}
+
+/* ---- One by one ---- */
+let oDeck=[],oIdx=0,oScore=0,oWrong=[],oLocked=false,oT0=0,oFull=false;
+function startOne(items){
+  oDeck=shuffle(items);oIdx=0;oScore=0;oWrong=[];oFull=items.length===ALL.length;
+  $("oGame").classList.remove("hidden");$("oEnd").classList.add("hidden");
+  $("oScore").textContent="0";$("oTotal").textContent=oDeck.length;
+  const bins=$("oBins");bins.innerHTML="";
+  GROUPS.forEach((g,i)=>{
+    const b=document.createElement("button");b.type="button";b.className="bin";b.dataset.group=g.id;
+    b.innerHTML=`<span class="dot ${g.dot}"></span><span>${g.name}</span><span class="k">${i+1}</span>`;
+    b.onclick=()=>oAnswer(g.id);bins.appendChild(b);
+  });
+  oT0=Date.now();runClock($("oClock"),oT0);
+  oNext();
+}
+function oNext(){
+  oLocked=false;$("oFb").textContent="";$("oFb").className="fb";
+  document.querySelectorAll(".bin").forEach(b=>{b.classList.remove("right");b.disabled=false});
+  $("oBar").style.width=(oIdx/oDeck.length*100)+"%";
+  if(oIdx>=oDeck.length){oFinish();return}
+  const st=$("oStage");st.innerHTML="";
+  const c=document.createElement("div");c.className="task enter";c.id="oTask";
+  c.innerHTML=`<span class="n">${oIdx+1} / ${oDeck.length}</span>${oDeck[oIdx].text}`;
+  st.appendChild(c);
+  makeDraggable(c,{canStart:()=>!oLocked,zoneSel:".bin",dragClass:"drag",onDrop:z=>oAnswer(z.dataset.group)});
+}
+function oAnswer(gid){
+  if(oLocked||oIdx>=oDeck.length) return;
+  oLocked=true;
+  const it=oDeck[oIdx],c=$("oTask"),fb=$("oFb");
+  document.querySelectorAll(".bin").forEach(b=>b.disabled=true);
+  if(gid===it.answer){
+    oScore++;c.classList.add("ok");fb.className="fb ok";fb.textContent="Правильно!";
+    document.querySelector(`.bin[data-group="${gid}"]`).classList.add("right");
+    setTimeout(()=>{oIdx++;oNext()},650);
+  } else {
+    oWrong.push({...it,chosen:gid});c.classList.add("bad");fb.className="fb bad";
+    fb.textContent=`Ні, правильно: ${G[it.answer].name}`;
+    document.querySelector(`.bin[data-group="${it.answer}"]`).classList.add("right");
+    setTimeout(()=>{oIdx++;oNext()},1700);
+  }
+  $("oScore").textContent=oScore;
+}
+function oFinish(){
+  stopTimers();
+  const answered=Math.min(oIdx,oDeck.length);
+  $("oGame").classList.add("hidden");$("oEnd").classList.remove("hidden");
+  $("oBig").innerHTML=`${oScore}<small> / ${oDeck.length}</small>`;
+  const pct=oScore/oDeck.length;
+  const msg=pct===1?"Бездоганно! 🔥":pct>=.8?"Дуже добре!":pct>=.5?"Непогано, але варто повторити.":"Спробуй ще раз і переглянь помилки нижче.";
+  $("oMeta").textContent=`${msg} Час: ${fmt(Date.now()-oT0)}.`+(answered<oDeck.length?` Відповідей: ${answered} з ${oDeck.length}.`:"");
+  $("oMist").innerHTML=oWrong.length?oWrong.map(w=>`<div class="it">${w.text}<div class="ex"><span class="w">${G[w.chosen].name}</span> → <span class="r">${G[w.answer].name}</span></div></div>`).join(""):"";
+  $("oMist").classList.toggle("hidden",!oWrong.length);
+  $("oRetry").classList.toggle("hidden",!oWrong.length);
+  if(oFull&&answered===oDeck.length){const r=getRec();if(r.one==null||oScore>r.one){r.one=oScore;setRec(r)}}
+  if(pct>=.8&&answered===oDeck.length) confetti();
+}
+$("oStop").onclick=()=>{oLocked=true;oFinish()};
+$("oAgain").onclick=()=>{stopTimers();startOne(ALL)};
+$("oRetry").onclick=()=>{stopTimers();startOne(oWrong.map(w=>({text:w.text,answer:w.answer})))};
+document.addEventListener("keydown",e=>{
+  if($("one").classList.contains("hidden")||$("oGame").classList.contains("hidden")) return;
+  const i=["1","2","3"].indexOf(e.key); if(i>=0) oAnswer(GROUPS[i].id);
+});
+
+/* ---- Sort ---- */
+let sCards=[],sSel=null,sT0=0,sAtt=1,sDone=false,sBusy=false,sMist=new Set();
+function startSort(){
+  sCards=shuffle(ALL).map((c,i)=>({...c,id:i,place:null,state:""}));
+  sSel=null;sAtt=1;sDone=false;sBusy=false;sMist=new Set();$("sReview").classList.add("hidden");
+  $("sFb").textContent="";$("sFb").className="fb";
+  $("sActs").classList.remove("hidden");$("sEndActs").classList.add("hidden");
+  const box=$("groups");box.innerHTML="";
+  GROUPS.forEach(g=>{
+    const z=document.createElement("div");z.className="group zone";z.dataset.zone=g.id;
+    z.innerHTML=`<h2><span class="dot ${g.dot}"></span><span class="nm-f">${g.name}</span><span class="nm-s">${g.short}</span><small id="cnt-${g.id}">0</small></h2><div class="chips" id="z-${g.id}"></div>`;
+    box.appendChild(z);
+  });
+  document.querySelectorAll("#sort .zone").forEach(z=>z.onclick=e=>{
+    if(e.target.closest(".sc")) return;
+    if(sSel!==null) place(sSel,z.dataset.zone||null);
+  });
+  const q=$("quick");
+  q.innerHTML=`<div class="ttl">Куди покласти картку?</div>`+GROUPS.map(g=>`<button type="button" data-q="${g.id}"><span class="dot ${g.dot}"></span>${g.short}</button>`).join("");
+  q.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{if(sSel!==null) place(sSel,b.dataset.q)});
+  sT0=Date.now();runClock($("sClock"),sT0);
+  renderSort();
+}
+function place(id,z){
+  if(sDone||sBusy) return;
+  const c=sCards.find(c=>c.id===id); if(!c||c.state==="ok") return;
+  c.place=z;c.state="";sSel=null;renderSort();
+}
+function hideQuick(){$("quick").classList.remove("show");document.body.classList.remove("has-quick")}
+function renderSort(){
+  const pool=$("poolCards");pool.innerHTML="";
+  GROUPS.forEach(g=>$("z-"+g.id).innerHTML="");
+  sCards.forEach(c=>{
+    const b=document.createElement("button");b.type="button";
+    b.className="sc"+(c.state?" "+c.state:"")+(sSel===c.id?" sel":"");
+    b.textContent=c.text;
+    makeDraggable(b,{
+      canStart:()=>c.state!=="ok"&&!sDone&&!sBusy,
+      zoneSel:"#sort .zone",dragClass:"drag",
+      onDrop:z=>place(c.id,z.dataset.zone||null),
+      onTap:()=>{if(c.state==="ok"||sDone||sBusy)return;sSel=sSel===c.id?null:c.id;renderSort()}
+    });
+    (c.place?$("z-"+c.place):pool).appendChild(b);
+  });
+  const left=sCards.filter(c=>!c.place).length;
+  if(!left) pool.innerHTML=`<div class="hint">${sDone?"Усі картки на своїх місцях!":"Усе розкладено. Натисни «Перевірити»."}</div>`;
+  GROUPS.forEach(g=>$("cnt-"+g.id).textContent=sCards.filter(c=>c.place===g.id).length);
+  document.querySelectorAll("#sort .zone").forEach(z=>z.classList.toggle("target",sSel!==null&&(z.dataset.zone||null)!==(sCards.find(c=>c.id===sSel)||{}).place));
+  $("sPlaced").textContent=sCards.length-left;
+  $("sBar").style.width=((sCards.length-left)/sCards.length*100)+"%";
+  const btn=$("sCheck");btn.disabled=left>0||sBusy||sDone;
+  btn.textContent=left>0?`Перевірити (залишилось ${left})`:"Перевірити";
+  const show=sSel!==null;
+  $("quick").classList.toggle("show",show);document.body.classList.toggle("has-quick",show);
+}
+$("sCheck").onclick=()=>{
+  if(sDone||sBusy) return;
+  let right=0;
+  sCards.forEach(c=>{if(c.place===c.answer){c.state="ok";right++}else c.state="bad"});
+  sSel=null;const fb=$("sFb");
+  if(right===sCards.length){
+    sDone=true;stopTimers();const t=Date.now()-sT0;
+    fb.className="fb ok";
+    fb.textContent=sAtt===1?`Бездоганно! Усе правильно з першої спроби за ${fmt(t)} 🔥`:`Готово! Усе правильно за ${fmt(t)}, спроб: ${sAtt}.`;
+    const r=getRec();if(r.sort==null||t<r.sort){r.sort=t;setRec(r)}
+    $("sActs").classList.add("hidden");$("sEndActs").classList.remove("hidden");
+    renderSort();confetti();showReview();
+  } else {
+    sCards.forEach(c=>{if(c.state==="bad")sMist.add(c.text)});sBusy=true;fb.className="fb bad";
+    fb.textContent=`Правильно ${right} з ${sCards.length}. Спробуй ще раз.`;
+    renderSort();
+    setTimeout(()=>{sCards.forEach(c=>{if(c.state==="bad")c.place=null});sAtt++;sBusy=false;renderSort()},1600);
+  }
+};
+function showReview(){
+  const r=$("sReview");
+  r.innerHTML=`<h2 class="rv-h">Запам’ятай правильні відповіді</h2><p class="note">${sMist.size?"Червоним позначено твердження, у яких була помилка. Зверни на них особливу увагу.":"Усе правильно з першої спроби! Переглянь ще раз, щоб закріпити."}</p><div class="ans">${GROUPS.map(g=>`<div class="panel"><h2><span class="dot ${g.dot}"></span>${g.name}</h2><ul>${g.items.map(t=>`<li${sMist.has(t)?' class="miss"':''}>${t}</li>`).join("")}</ul></div>`).join("")}</div>`;
+  r.classList.remove("hidden");
+  setTimeout(()=>r.scrollIntoView({behavior:"smooth",block:"start"}),1200);
+}
+$("sAgain").onclick=()=>{stopTimers();startSort();window.scrollTo(0,0)};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&sSel!==null){sSel=null;renderSort()}});
+
+/* ---- Answers ---- */
+function renderAnswers(){
+  $("ansList").innerHTML=GROUPS.map(g=>`<div class="panel"><h2><span class="dot ${g.dot}"></span>${g.name}</h2><ul>${g.items.map(t=>`<li>${t}</li>`).join("")}</ul></div>`).join("");
+}
+
+/* ---- Confetti ---- */
+function confetti(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const cv=$("confetti"),ctx=cv.getContext("2d");cv.width=innerWidth;cv.height=innerHeight;
+  const cs=getComputedStyle(document.documentElement);
+  const cols=["--primary","--g1","--g2","--g3","--gold"].map(v=>cs.getPropertyValue(v).trim());
+  const ps=Array.from({length:140},()=>({x:Math.random()*cv.width,y:-20-Math.random()*cv.height*.5,vx:(Math.random()-.5)*3,vy:2+Math.random()*3,r:5+Math.random()*5,a:Math.random()*6,c:cols[Math.floor(Math.random()*cols.length)]}));
+  let f=0;(function tick(){ctx.clearRect(0,0,cv.width,cv.height);
+    ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.a+=.1;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.fillStyle=p.c;ctx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);ctx.restore()});
+    if(++f<220)requestAnimationFrame(tick);else ctx.clearRect(0,0,cv.width,cv.height)})();
+}
+
+renderRec();
+</script>
+</body>
+</html>
